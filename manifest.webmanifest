@@ -1,0 +1,9 @@
+{
+  "name": "CLIPRUSH Mobile",
+  "short_name": "CLIPRUSH",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101014",
+  "theme_color": "#101014",
+  "description": "Private on-device video clip editor"
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101014">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>CLIPRUSH Mobile</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">CLIP<span>RUSH</span></div>
+  <div class="tagline">EVERY SECOND COUNTS.</div>
+  <span class="local">ON-DEVICE</span>
+</header>
+<main>
+  <section class="panel">
+    <h1>Create a clip</h1>
+    <p class="muted">Import a video you own or have permission to edit. Processing stays in this browser tab.</p>
+    <label class="filebtn">Choose video from iPhone
+      <input id="file" type="file" accept="video/*">
+    </label>
+    <label class="field-label" for="url">Or direct video URL (must allow browser access)</label>
+    <div class="urlrow">
+      <input id="url" type="url" placeholder="https://example.com/video.mp4" autocomplete="url">
+      <button id="loadUrl" class="secondary">Load</button>
+    </div>
+    <p id="status" class="status" role="status">No video loaded.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Preview</h2>
+    <div class="preview">
+      <video id="source" playsinline controls></video>
+      <div class="preview-watermark">CLIPRUSH</div>
+    </div>
+    <div class="timegrid">
+      <label>Start (seconds)<input id="start" type="number" min="0" step="1" value="0"></label>
+      <label>Duration
+        <select id="duration">
+          <option value="120">120 seconds</option>
+          <option value="135">135 seconds</option>
+          <option value="150" selected>150 seconds</option>
+          <option value="165">165 seconds</option>
+          <option value="180">180 seconds</option>
+        </select>
+      </label>
+    </div>
+    <p class="hint">Move the video playhead to a good moment, then use “Use current time” to set the start.</p>
+    <button id="useTime" class="secondary full">Use current playhead as start</button>
+  </section>
+
+  <section class="panel">
+    <h2>Subtitles</h2>
+    <label class="field-label" for="caption">Subtitle text</label>
+    <textarea id="caption" rows="3" maxlength="180" placeholder="THAT WAS INSANE!&#10;WAIT FOR IT..."></textarea>
+    <p class="hint">This starter version overlays your text throughout the exported clip. Timed word-by-word AI subtitles require an on-device speech model, which is not included in this first build.</p>
+  </section>
+
+  <section class="panel">
+    <h2>CLIPRUSH branding</h2>
+    <div class="brand-preview"><strong>CLIPRUSH</strong><small>Transparent centre watermark · white with red accent</small></div>
+    <label class="range-label">Watermark opacity <output id="opacityOut">35%</output></label>
+    <input id="opacity" type="range" min="10" max="80" value="35">
+  </section>
+
+  <section class="panel">
+    <h2>Export</h2>
+    <div class="specs"><span>Vertical 9:16</span><span>720 × 1280</span><span>MP4/WebM if supported</span></div>
+    <button id="export" class="primary full" disabled>Render my clip</button>
+    <p id="exportStatus" class="status" aria-live="polite">Load a video to begin.</p>
+    <a id="download" class="download hidden" download="CLIPRUSH-clip">Save finished clip</a>
+    <p class="hint">Keep this page open and your iPhone awake during rendering. Long exports can be interrupted by iOS memory or battery management.</p>
+  </section>
+  <section class="notice">
+    <strong>Current build limitations</strong>
+    <ul>
+      <li>Video files and direct CORS-enabled video URLs are supported; social-platform watch links are not downloader links.</li>
+      <li>Live-stream capture and automatic AI highlight selection are not implemented.</li>
+      <li>Export support depends on the iOS Safari version. The app checks the available recording format before rendering.</li>
+      <li>Use only footage you are authorised to download, edit and republish.</li>
+    </ul>
+  </section>
+</main>
+<footer>CLIPRUSH · Private browser-based prototype</footer>
+<script src="app.js"></script>
+</body>
+</html>
